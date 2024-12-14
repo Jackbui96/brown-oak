@@ -1,0 +1,15 @@
+{
+  "name": "brown-oak",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jackbui96/brown-oak.git"
+  },
+  "private": true
+}
