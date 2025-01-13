@@ -13,8 +13,8 @@ app.get("/", (req, res) => {
 })
 
 // Routes
-const v1OtpRoute = require("./src/v1/routes/otpRoutes");
-app.use("/api/v1/otps", v1OtpRoute);
+const v1_OtpRoute = require("./src/v1/routes/otpRoutes");
+app.use("/api/v1/otps", v1_OtpRoute);
 
 // DB
 const connectDB = require("./config/db")
