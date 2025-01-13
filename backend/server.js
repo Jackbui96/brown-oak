@@ -13,8 +13,12 @@ app.get("/", (req, res) => {
 })
 
 // Routes
-const otpRoute = require("./src/v1/routes/otp");
-app.use("/otp", otpRoute);
+const v1OtpRoute = require("./src/v1/routes/otpRoutes");
+app.use("/api/v1/otps", v1OtpRoute);
+
+// DB
+const connectDB = require("./config/db")
+connectDB()
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => console.log(`Server running on port ${port}`));

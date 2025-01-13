@@ -2,10 +2,9 @@
   "name": "brown-oak",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "node backend/server.js",
-    "heroku-postbuild": "cd frontend && npm install --legacy-peer-deps && npm run build"
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
   },
   "repository": {
     "type": "git",

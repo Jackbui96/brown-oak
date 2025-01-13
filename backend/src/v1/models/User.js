@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-    phoneNumber: { type: String, unique: true },
-    otp: String,
-    otpExpire: Date,
-    registered: { type: Date, default: Date.now() },
-    lastLoggedIn: {type: Date, default: Date.now() },
+    phoneNumber: { type: String, unique: true, required: true },
+    registered: { type: Date, default: Date.now },
+    lastLoggedIn: {type: Date, default: Date.now },
 })
 
 module.exports = mongoose.model("User", userSchema, "users");
