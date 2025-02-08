@@ -9,7 +9,7 @@ const options = {
     apis: [
         "./routes/otpRoutes.js",
         "./routes/userRoutes.js",
-        "./models/User.js"
+        "./models/UserData.js"
     ],
 };
 
