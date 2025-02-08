@@ -1,10 +1,10 @@
-import LoginAuthentication from "./pages/LoginAuthentication";
+import LoginAuth from "./pages/LoginAuth";
 
 
 const App = () => {
     return (
         <div>
-            <LoginAuthentication />
+            <LoginAuth />
         </div>
     );
 };
