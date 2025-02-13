@@ -1,10 +1,10 @@
 import LoginAuth from "./pages/LoginAuth";
-
+import Dashboard from "./pages/Dashboard"
 
 const App = () => {
     return (
         <div>
-            <LoginAuth />
+            <Dashboard />
         </div>
     );
 };
