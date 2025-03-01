@@ -44,14 +44,13 @@ const LeftPanel = () => {
                     </div>
                 </div>
             </div>
+            <div className="text-center">Speed over Time</div>
             <ScatterChart
-                width={428}
                 height={354}
                 dataset={dataset}
                 series={[
                     {
                         data: dataset.map((v) => ({ x: v.x, y: v.y, id: v.id })),
-                        // color: "white",
                     }
                 ]}
                 xAxis={[
@@ -60,18 +59,12 @@ const LeftPanel = () => {
                         scaleType: 'point',  // Use point scale for categorical data
                         fill: "white",
                         stroke: "white",
-                        labelStyle: {
-                        }
-                        // tick: { fill: "white" },
-                        // label: 'Time',  // Label for X-axis
                     }
                 ]}
                 yAxis={[
                     {
                         dataKey: 'y',  // Data key from dataset
-                        fill: "white"
-                        // tick: { fill: "white" },
-                        // label: "Speed (mph)",  // Label for Y-axis
+                        fill: "white",
                     }
                 ]}
                 grid={{ vertical: true, horizontal: true }}

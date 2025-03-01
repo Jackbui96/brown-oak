@@ -1,15 +1,7 @@
-import {
-    FormControl,
-    FormControlLabel,
-    FormLabel,
-    Radio,
-    RadioGroup,
-    Stack, ToggleButton,
-    ToggleButtonGroup,
-    Typography
-} from "@mui/material";
 import { useState } from "react";
 import { BarChart } from '@mui/x-charts/BarChart';
+import OpsStyledButton from "../Common/OpsStyledButton.jsx";
+import OpsOvalToggleButtonGroup from "../Common/OpsOvalToggleButtonGroup.jsx";
 
 const CenterPanel = () => {
     const [direction, setDirection] = useState("both");
@@ -41,42 +33,17 @@ const CenterPanel = () => {
 
     return (
         <div>
-            <h3>Historical Data</h3>
-            <div className="buttons">
-                <button>3 HR</button>
-                <button>24 HR</button>
-                <button>7 DAY</button>
-                <button>30 DAY</button>
+            <h3 className="font-bold text-center py-6">Historical Data</h3>
+            <div className="grid grid-cols-4 gap-4 px-2 py-4 bg-amber-50">
+                <OpsStyledButton variant="contained">3 HR</OpsStyledButton>
+                <OpsStyledButton variant="contained">24 HR</OpsStyledButton>
+                <OpsStyledButton variant="contained">7 DAY</OpsStyledButton>
+                <OpsStyledButton variant="contained">30 DAY</OpsStyledButton>
             </div>
-            <FormControl component="fieldset">
-                <Typography sx={{ color: "white", marginBottom: 1 }}>Direction</Typography>
-                <ToggleButtonGroup
-                    value={direction}
-                    exclusive
-                    onChange={handleDirectionChange}
-                    sx={{
-                        backgroundColor: "transparent",
-                        border: "1px solid teal",
-                        borderRadius: "8px",
-                        overflow: "hidden",
-                        "& .MuiToggleButton-root": {
-                            color: "white",
-                            border: "none",
-                            padding: "6px 16px",
-                            transition: "all 0.3s ease",
-                        },
-                        "& .Mui-selected": {
-                            backgroundColor: "teal !important",
-                            color: "white !important",
-                            borderRadius: "8px",
-                        },
-                    }}
-                >
-                    <ToggleButton value="both">Both</ToggleButton>
-                    <ToggleButton value="westbound">Westbound</ToggleButton>
-                    <ToggleButton value="eastbound">Eastbound</ToggleButton>
-                </ToggleButtonGroup>
-            </FormControl>
+            <div className="flex items-center justify-center bg-amber-600 px-3">
+                <div className="display: flex bg-red-500">Direction</div>
+                <OpsOvalToggleButtonGroup />
+            </div>
             <BarChart
                 series={series}
                 height={290}
