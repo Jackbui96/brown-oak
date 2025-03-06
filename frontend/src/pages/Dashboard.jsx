@@ -1,7 +1,7 @@
 import Header from "../components/Common/Header.jsx";
-import LeftPanel from "../components/Dashboard/LeftPanel.jsx";
-import CenterPanel from "../components/Dashboard/CenterPanel.jsx";
-import RightPanel from "../components/Dashboard/RightPanel.jsx";
+import LeftPanel from "../components/Dashboard/01_Left Panel/LeftPanel.jsx";
+import CenterPanel from "../components/Dashboard/02_Center Panel/CenterPanel.jsx";
+import RightPanel from "../components/Dashboard/03_Right panel/RightPanel.jsx";
 
 const Dashboard = () => {
     return (

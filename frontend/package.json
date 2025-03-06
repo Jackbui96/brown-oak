@@ -17,6 +17,7 @@
     "@mui/x-date-pickers": "^7.27.1",
     "@tailwindcss/vite": "^4.0.9",
     "dayjs": "^1.11.13",
+    "framer-motion": "^12.4.10",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-gauge-component": "^1.2.64",

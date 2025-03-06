@@ -1,5 +1,5 @@
 // import { MapContainer, TileLayer, Marker } from "react-leaflet";
-import SpeedGauge from "./SpeedGauge";
+import SpeedGauge from "./SpeedGauge.jsx";
 import { ScatterChart } from "@mui/x-charts";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -55,15 +55,15 @@ const LeftPanel = () => {
                 ]}
                 xAxis={[
                     {
-                        dataKey: "x",  // Data key from dataset,
-                        scaleType: 'point',  // Use point scale for categorical data
+                        dataKey: "x",
+                        scaleType: 'point',
                         fill: "white",
                         stroke: "white",
                     }
                 ]}
                 yAxis={[
                     {
-                        dataKey: 'y',  // Data key from dataset
+                        dataKey: 'y',
                         fill: "white",
                     }
                 ]}
