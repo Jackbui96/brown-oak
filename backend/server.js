@@ -16,10 +16,10 @@ app.get("/", (req, res) => {
 
 // Routes
 const v1_OtpRoute = require("./src/v1/routes/otpRoutes");
-app.use("/api/v1/otps", v1_OtpRoute);
+app.use("/v1/otps", v1_OtpRoute);
 
 const v1_UserRoute = require("./src/v1/routes/userRoutes");
-app.use("/api/v1/users", v1_UserRoute)
+app.use("/v1/users", v1_UserRoute)
 
 // DB
 const connectDB = require("./config/db")
