@@ -1,10 +1,10 @@
-// import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import SpeedGauge from "./SpeedGauge.jsx";
 import { ScatterChart } from "@mui/x-charts";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useState } from "react";
+import MapView from "./MapView.jsx";
 
 const dataset = [
     { x: "12:00", y: 37, id: "d1" },
@@ -19,17 +19,17 @@ const dataset = [
     { x: "14:15", y: 37, id: "d10" },
 ];
 
-const LeftPanel = () => {
+export default function LeftPanel() {
 
     const [selectedDate, setSelectedDate] = useState();
 
     return (
         <div>
             <div className="grid grid-cols-2">
-                <div className="w-[210px] h-[346px] bg-amber-600" />
+                <MapView />
                 <div className="text-center">
                     <div className="font-medium text-[24px]">Recent Speed</div>
-                    <div className="w-full h-[190.95px] bg-blue-900">
+                    <div className="w-full h-[190.95px]">
                         <SpeedGauge speed={37} maxSpeed={69} />
                     </div>
                     <div className="grid grid-cols-2">
@@ -121,5 +121,3 @@ const LeftPanel = () => {
         </div>
     );
 };
-
-export default LeftPanel;

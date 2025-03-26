@@ -4,80 +4,51 @@ const SpeedGauge = ({ value, max = 100 }) => {
     const percentage = (value / max) * 180; // Convert to degrees
 
     return (
-        <GaugeComponent
-            type="semicircle"
-            arc={{
-                width: 0.2,
-                padding: 0.005,
-                cornerRadius: 1,
-                // gradient: true,
-                subArcs: [
-                    {
-                        limit: 15,
-                        color: '#EA4228',
-                        showTick: true,
-                        tooltip: {
-                            text: 'Too low temperature!'
+        <div className="relative">
+            <GaugeComponent
+                type="semicircle"
+                arc={{
+                    width: 0.2,
+                    padding: 0.005,
+                    cornerRadius: 1,
+                    subArcs: [
+                        {
+                            limit: 25,
+                            color: '#5BE12C',
+                            showTick: true,
                         },
-                        onClick: () => console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"),
-                        onMouseMove: () => console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"),
-                        onMouseLeave: () => console.log("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC"),
-                    },
-                    {
-                        limit: 17,
-                        color: '#F5CD19',
-                        showTick: true,
-                        tooltip: {
-                            text: 'Low temperature!'
-                        }
-                    },
-                    {
-                        limit: 28,
-                        color: '#5BE12C',
-                        showTick: true,
-                        tooltip: {
-                            text: 'OK temperature!'
-                        }
-                    },
-                    {
-                        limit: 30, color: '#F5CD19', showTick: true,
-                        tooltip: {
-                            text: 'High temperature!'
-                        }
-                    },
-                    {
-                        color: '#EA4228',
-                        tooltip: {
-                            text: 'Too high temperature!'
-                        }
-                    }
-                ]
-            }}
-            pointer={{
-                color: '#345243',
-                length: 0.80,
-                width: 15,
-                // elastic: true,
-            }}
-            labels={{
-                valueLabel: { formatTextValue: value => value + 'ºC' },
-                // tickLabels: {
-                //     type: 'outer',
-                //     defaultTickValueConfig: {
-                //         formatTextValue: (value: any) => value + 'ºC' ,
-                //         style: {fontSize: 10}
-                //     },
-                //     ticks: [
-                //         { value: 13 },
-                //         { value: 22.5 },
-                //         { value: 32 }
-                //     ],
-                // }
-            }}
-            value={22.5}
-            minValue={10}
-            maxValue={35}
-        />
+                        {
+                            limit: 65,
+                            color: '#F5CD19',
+                            showTick: true,
+                            // tooltip: {
+                            //     text: 'Low temperature!'
+                            // }
+                        },
+                        {
+                            limit: 80,
+                            color: '#EA4228',
+                            showTick: true,
+                        },
+                    ]
+                }}
+                pointer={{
+                    color: '#345243',
+                    length: 0.80,
+                    width: 15,
+                }}
+                labels={{
+                    valueLabel: { formatTextValue: value => `${value}` },
+                }}
+                value={45}
+                minValue={0}
+                maxValue={80}
+            />
+            <div className="absolute w-full text-center -mt-6">
+                <text>mph</text>
+            </div>
+        </div>
+
     );
 };
 
