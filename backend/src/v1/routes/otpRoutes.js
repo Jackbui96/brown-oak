@@ -8,7 +8,6 @@ router.get("/", async(req, res) => {
 });
 
 router.post("/send-otp", otpController.sendOtp);
-
 router.post("/verify-otp", otpController.verifyOtp);
 
 module.exports = router;

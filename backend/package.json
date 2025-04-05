@@ -3,12 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/server": "^4.11.3",
+    "@aws-sdk/client-s3": "^3.782.0",
+    "@aws-sdk/s3-request-presigner": "^3.782.0",
     "@tensorflow/tfjs-node": "^4.22.0",
+    "axios": "^1.8.4",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-session": "^1.18.1",
+    "graphql": "^16.10.0",
     "mongodb": "^6.12.0",
     "mongoose": "^8.9.4",
     "nodemon": "^3.1.9",
@@ -18,7 +23,7 @@
     "twilio": "^5.4.1"
   },
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon server.mjs",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
