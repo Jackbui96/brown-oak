@@ -1,15 +1,21 @@
 const { getPublicResumeUrl } = require("../services/downloadService.js");
-const Download = require("../models/Download")
+const createDownloadModel  = require("../models/Download");
+const { portfolioDb } = require("../../server.mjs");
+const Download = createDownloadModel(portfolioDb)
 
 const handleDownloadAndTrack = async (req, res) => {
     try {
+        const ip = (req.headers["x-forwarded-for"] || req.socket.remoteAddress || "").split(",")[0].trim();
+        const userAgent = req.headers["user-agent"]?.substring(0, 500);
+        const source = req.query.source || "landing-page";
+
         // Log the download
         await Download.create({
             timestamp: new Date(),
-            ip: req.headers["x-forwarded-for"] || req.socket.remoteAddress,
-            userAgent: req.headers["user-agent"],
-            source: "landing-page"
-        })
+            ip,
+            userAgent,
+            source
+        });
 
         const url = await getPublicResumeUrl();
         res.status(200).json({ url });

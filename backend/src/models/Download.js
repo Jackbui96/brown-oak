@@ -19,6 +19,4 @@ const downloadSchema = new mongoose.Schema({
     },
 });
 
-const Download = mongoose.model("Download", downloadSchema, "resume_downloads");
-
-module.exports = Download;
+module.exports = (conn) => conn.model("Download", downloadSchema, "resume_downloads");
