@@ -1,17 +1,17 @@
-const otpService = require("../services/otpService");
+import { sendOtp, verifyAndHandleUser } from "../services/otpService";
 
-const sendOtp = async (req, res) => {
+const handleSendOtp = async (req, res) => {
     const { phoneNumber } = req.body;
 
     try {
-        await otpService.sendOtp(phoneNumber);
+        await sendOtp(phoneNumber);
         res.status(200).send({ message: "OTP sent successfully" });
     } catch (err) {
         res.status(500).send({ error: "Failed to send OTP" });
     }
 };
 
-const verifyOtp = async (req, res) => {
+const handleVerifyOtp = async (req, res) => {
     const { phoneNumber, otp } = req.body;
 
     if (!phoneNumber || !otp) {
@@ -19,7 +19,7 @@ const verifyOtp = async (req, res) => {
     }
 
     try {
-        const user = await otpService.verifyAndHandleUser(phoneNumber, otp);
+        const user = await verifyAndHandleUser(phoneNumber, otp);
         return res.status(200).send({
             message: "OTP verified successfully",
             user,
@@ -29,7 +29,7 @@ const verifyOtp = async (req, res) => {
     }
 };
 
-module.exports = {
-    sendOtp,
-    verifyOtp,
+export {
+    handleSendOtp,
+    handleVerifyOtp,
 }

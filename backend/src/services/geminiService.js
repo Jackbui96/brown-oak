@@ -1,7 +1,9 @@
-const axios = require("axios");
-require('dotenv').config();
+import dotenv from "dotenv";
+dotenv.config();
 
-const { SYSTEM_PROMPT } = require("./systemPrompt");
+import axios from "axios";
+
+import { SYSTEM_PROMPT } from "./systemPrompt.js";
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
 const GEMINI_API_KEY = process.env.GEMINI_KEY;
 
@@ -35,6 +37,6 @@ const generateGeminiReply = async (userMessage) => {
     }
 }
 
-module.exports = {
+export {
     generateGeminiReply,
 }

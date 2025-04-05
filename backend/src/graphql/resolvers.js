@@ -1,4 +1,4 @@
-const Download = require("../models/Download");
+import Download from "../models/Download.js";
 
 const resolvers = {
     Query: {
@@ -23,4 +23,4 @@ const resolvers = {
     },
 };
 
-module.exports = resolvers;
+export default resolvers;

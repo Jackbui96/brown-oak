@@ -1,5 +1,5 @@
-const twilioClient = require('../api-clients/twilioClient');
-const userData = require('../databases/UserData');
+import twilioClient from "../api-clients/twilioClient.js";
+import { findOrCreateUser } from "../databases/UserData.js";
 
 const sendOtp = async (phoneNumber) => {
     try {
@@ -26,10 +26,10 @@ const verifyAndHandleUser = async (phoneNumber, otp) => {
         throw new Error("Invalid or expired OTP");
     }
 
-    return await userData.findOrCreateUser(phoneNumber);
+    return await findOrCreateUser(phoneNumber);
 };
 
-module.exports = {
+export {
     sendOtp,
     verifyAndHandleUser,
 }

@@ -1,6 +1,6 @@
-const userService = require("../services/userService")
+import { getOne } from "../services/userService.js";
 
-const getOneUser = async (req, res) => {
+const handleGetOneUser = async (req, res) => {
     const { phoneNumber } = req.params;
 
     if (!phoneNumber) {
@@ -8,7 +8,7 @@ const getOneUser = async (req, res) => {
     }
 
     try {
-        const user = await userService.getOneUser(phoneNumber);
+        const user = await getOne(phoneNumber);
         if (!user) {
             return res.status(404).send({ message: 'User not found' });
         }
@@ -18,6 +18,6 @@ const getOneUser = async (req, res) => {
     }
 };
 
-module.exports = {
-    getOneUser,
+export {
+    handleGetOneUser,
 }

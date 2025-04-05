@@ -1,4 +1,4 @@
-const User = require("../models/User");
+import User from "../models/User.js";
 
 const getOneUser = async (phoneNumber) => {
     try {
@@ -31,7 +31,7 @@ const findOrCreateUser = async (phoneNumber) => {
     }
 }
 
-module.exports = {
+export {
     getOneUser,
     findOrCreateUser,
 }

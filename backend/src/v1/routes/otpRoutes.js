@@ -1,5 +1,5 @@
-const express = require('express');
-const otpController = require("../../controllers/otpController");
+import express from "express";
+import { sendOtp, verifyAndHandleUser } from "../../services/otpService.js";
 
 const router = express.Router();
 
@@ -7,7 +7,7 @@ router.get("/", async(req, res) => {
     res.send("otp is running!");
 });
 
-router.post("/send-otp", otpController.sendOtp);
-router.post("/verify-otp", otpController.verifyOtp);
+router.post("/send-otp", sendOtp);
+router.post("/verify-otp", verifyAndHandleUser);
 
-module.exports = router;
+export default router;

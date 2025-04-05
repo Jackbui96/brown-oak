@@ -55,6 +55,6 @@ You should answer all portfolio or career-related questions in a friendly, confi
 Assume the user is asking about Nguyen directly and respond as if you are his AI-powered representative.
 `;
 
-module.exports = {
+export {
     SYSTEM_PROMPT,
-};
+}

@@ -1,4 +1,4 @@
-const { generateGeminiReply } = require("../services/geminiService");
+import { generateGeminiReply } from "../services/geminiService.js";
 
 const handleChatRequest = async (req, res) => {
     const { message } = req.body;
@@ -12,6 +12,6 @@ const handleChatRequest = async (req, res) => {
     }
 };
 
-module.exports = {
+export {
     handleChatRequest
 }

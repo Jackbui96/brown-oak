@@ -1,6 +1,7 @@
-const { getPublicResumeUrl } = require("../services/downloadService.js");
-const createDownloadModel  = require("../models/Download");
-const { portfolioDb } = require("../../server.mjs");
+import { portfolioDb } from "../databases/index.js";
+import { getPublicResumeUrl } from "../services/downloadService.js";
+import createDownloadModel from "../models/Download.js";
+
 const Download = createDownloadModel(portfolioDb)
 
 const handleDownloadAndTrack = async (req, res) => {
@@ -25,6 +26,6 @@ const handleDownloadAndTrack = async (req, res) => {
     }
 }
 
-module.exports = {
+export {
     handleDownloadAndTrack,
 }

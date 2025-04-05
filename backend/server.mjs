@@ -1,11 +1,13 @@
 import dotenv from "dotenv";
-dotenv.config({ path: "./.env" });
+dotenv.config();
 
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import http from "http";
-import mongoose from "mongoose";
+
+// Mongoose Server
+import { brownDustDb, portfolioDb } from "./src/databases/index.js";
 
 // Apollo Server
 import { ApolloServer } from "@apollo/server";
@@ -43,15 +45,6 @@ app.use("/v1/download", v1_downloadRoutes);
 app.use("/v1/otps", v1_OtpRoute);
 app.use("/v1/users", v1_UserRoute)
 
-// Create separate Mongoose connections
-const brownDustDb = mongoose.createConnection(process.env.ATLAS_URI_BROWNDUST);
-brownDustDb.once("open", () => console.log("✅ MongoDB BrownDust connected"));
-brownDustDb.on("error", (err) => console.error("❌ MongoDB BrownDust error:", err));
-
-const portfolioDb = mongoose.createConnection(process.env.ATLAS_URI_PORTFOLIO);
-portfolioDb.once("open", () => console.log("✅ MongoDB Portfolio connected"));
-portfolioDb.on("error", (err) => console.error("❌ MongoDB Portfolio error:", err));
-
 // Setup Apollo Server with Express
 async function startApolloServer() {
     const server = new ApolloServer({
@@ -81,10 +74,4 @@ httpServer.listen(port, () => {
     console.log(`Server running on port ${port}`);
     V1SwaggerDocs(app, port)
 });
-
-// Export these if models use specific connections
-export {
-    brownDustDb,
-    portfolioDb
-};
 

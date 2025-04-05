@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const downloadSchema = new mongoose.Schema({
     timestamp: {
@@ -19,4 +19,5 @@ const downloadSchema = new mongoose.Schema({
     },
 });
 
-module.exports = (conn) => conn.model("Download", downloadSchema, "resume_downloads");
+const Download = mongoose.model("Download", downloadSchema, "resume_downloads");
+export default Download;
