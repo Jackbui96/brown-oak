@@ -38,10 +38,10 @@ app.get("/", (req, res) => {
 })
 
 // REST routes
-app.use("/api/v1/chat", v1_ChatRoutes);
-app.use("/api/v1/download", v1_downloadRoutes);
-app.use("/api/v1/otps", v1_OtpRoute);
-app.use("/api/v1/users", v1_UserRoute)
+app.use("/v1/chat", v1_ChatRoutes);
+app.use("/v1/download", v1_downloadRoutes);
+app.use("/v1/otps", v1_OtpRoute);
+app.use("/v1/users", v1_UserRoute)
 
 // Create separate Mongoose connections
 const brownDustDb = mongoose.createConnection(process.env.ATLAS_URI_BROWNDUST);
