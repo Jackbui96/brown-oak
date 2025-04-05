@@ -1,8 +1,5 @@
-import { portfolioDb } from "../databases/index.js";
 import { getPublicResumeUrl } from "../services/downloadService.js";
-import createDownloadModel from "../models/Download.js";
-
-const Download = createDownloadModel(portfolioDb)
+import { createDownload } from "../databases/DownloadData.js";
 
 const handleDownloadAndTrack = async (req, res) => {
     try {
@@ -11,12 +8,12 @@ const handleDownloadAndTrack = async (req, res) => {
         const source = req.query.source || "landing-page";
 
         // Log the download
-        await Download.create({
-            timestamp: new Date(),
+        await createDownload(
+            new Date(),
             ip,
             userAgent,
             source
-        });
+        )
 
         const url = await getPublicResumeUrl();
         res.status(200).json({ url });
