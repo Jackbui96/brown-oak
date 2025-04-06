@@ -1,5 +1,5 @@
-const swaggerJSDoc = require("swagger-jsdoc");
-const swaggerUi = require("swagger-ui-express");
+import swaggerJSDoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
 
 const options = {
     definition: {
@@ -9,14 +9,13 @@ const options = {
     apis: [
         "./routes/otpRoutes.js",
         "./routes/userRoutes.js",
-        "./models/UserData.js"
+        "./models/UserData.js",
     ],
 };
 
 const swaggerSpec = swaggerJSDoc(options);
 
 const swaggerDocs = (app, port) => {
-    // Route-Handler to visit our docs
     app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
     // Make our docs in JSON format available
     app.get("/api/v1/docs.json", (req, res) => {
@@ -28,4 +27,4 @@ const swaggerDocs = (app, port) => {
     );
 };
 
-module.exports = { swaggerDocs };
+export { swaggerDocs };

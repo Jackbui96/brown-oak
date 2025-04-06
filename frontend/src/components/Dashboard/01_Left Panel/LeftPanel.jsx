@@ -1,10 +1,10 @@
-// import { MapContainer, TileLayer, Marker } from "react-leaflet";
-import SpeedGauge from "./SpeedGauge";
+import SpeedGauge from "./SpeedGauge.jsx";
 import { ScatterChart } from "@mui/x-charts";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useState } from "react";
+import MapView from "./MapView.jsx";
 
 const dataset = [
     { x: "12:00", y: 37, id: "d1" },
@@ -19,17 +19,17 @@ const dataset = [
     { x: "14:15", y: 37, id: "d10" },
 ];
 
-const LeftPanel = () => {
+export default function LeftPanel() {
 
     const [selectedDate, setSelectedDate] = useState();
 
     return (
         <div>
             <div className="grid grid-cols-2">
-                <div className="w-[210px] h-[346px] bg-amber-600" />
+                <MapView />
                 <div className="text-center">
                     <div className="font-medium text-[24px]">Recent Speed</div>
-                    <div className="w-full h-[190.95px] bg-blue-900">
+                    <div className="w-full h-[190.95px]">
                         <SpeedGauge speed={37} maxSpeed={69} />
                     </div>
                     <div className="grid grid-cols-2">
@@ -44,34 +44,27 @@ const LeftPanel = () => {
                     </div>
                 </div>
             </div>
+            <div className="text-center">Speed over Time</div>
             <ScatterChart
-                width={428}
                 height={354}
                 dataset={dataset}
                 series={[
                     {
                         data: dataset.map((v) => ({ x: v.x, y: v.y, id: v.id })),
-                        // color: "white",
                     }
                 ]}
                 xAxis={[
                     {
-                        dataKey: "x",  // Data key from dataset,
-                        scaleType: 'point',  // Use point scale for categorical data
+                        dataKey: "x",
+                        scaleType: 'point',
                         fill: "white",
                         stroke: "white",
-                        labelStyle: {
-                        }
-                        // tick: { fill: "white" },
-                        // label: 'Time',  // Label for X-axis
                     }
                 ]}
                 yAxis={[
                     {
-                        dataKey: 'y',  // Data key from dataset
-                        fill: "white"
-                        // tick: { fill: "white" },
-                        // label: "Speed (mph)",  // Label for Y-axis
+                        dataKey: 'y',
+                        fill: "white",
                     }
                 ]}
                 grid={{ vertical: true, horizontal: true }}
@@ -128,5 +121,3 @@ const LeftPanel = () => {
         </div>
     );
 };
-
-export default LeftPanel;

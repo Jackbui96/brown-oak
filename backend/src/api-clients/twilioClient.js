@@ -1,8 +1,11 @@
-const twilio = require("twilio");
+import dotenv from "dotenv";
+dotenv.config();
+
+import twilio from "twilio";
 
 const twilioClient = twilio(
     process.env.TWILIO_SID,
     process.env.TWILIO_AUTH_TOKEN
 );
 
-module.exports = twilioClient
+export default twilioClient;

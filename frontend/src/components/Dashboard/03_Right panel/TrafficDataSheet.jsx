@@ -1,0 +1,202 @@
+const translation = {
+    lightBlue: "Below 30",
+    blue: "31 to 40",
+    orange: "41 to 50",
+    red: "over 50",
+}
+
+export function addLabels(withSymbol, series) {
+    return series.map((item) => ({
+        ...item,
+        label: translation[item.dataKey],
+        valueFormatter: (v) => withSymbol ? `${v}%` : `${v}`,
+    }))
+}
+
+export const trafficDataSheet = [
+    {
+        time: "20:30",
+        lightBlue: 0,
+        blue: 83,
+        orange: 17,
+        red: 0,
+    },
+    {
+        time: "20:45",
+        lightBlue: 8,
+        blue: 81,
+        orange: 8,
+        red: 4,
+    },
+    {
+        time: "21:00",
+        lightBlue: 19,
+        blue: 54,
+        orange: 23,
+        red: 4,
+    },
+    {
+        time: "21:15",
+        lightBlue: 8,
+        blue: 72,
+        orange: 20,
+        red: 0,
+    },
+    {
+        time: "21:30",
+        lightBlue: 0,
+        blue: 58,
+        orange: 33,
+        red: 8,
+    },
+    {
+        time: "21:45",
+        lightBlue: 4,
+        blue: 64,
+        orange: 28,
+        red: 4,
+    },
+    {
+        time: "22:00",
+        lightBlue: 0,
+        blue: 64,
+        orange: 36,
+        red: 0,
+    },
+    {
+        time: "22:15",
+        lightBlue: 5,
+        blue: 95,
+        orange: 0,
+        red: 0,
+    },
+    {
+        time: "22:30",
+        lightBlue: 13,
+        blue: 88,
+        orange: 0,
+        red: 0,
+    },
+    {
+        time: "22:45",
+        lightBlue: 10,
+        blue: 62,
+        orange: 24,
+        red: 5,
+    },
+    {
+        time: "23:00",
+        lightBlue: 5,
+        blue: 68,
+        orange: 26,
+        red: 0,
+    },
+    {
+        time: "23:15",
+        lightBlue: 0,
+        blue: 73,
+        orange: 27,
+        red: 0,
+    },
+    {
+        time: "23:30",
+        lightBlue: 0,
+        blue: 100,
+        orange: 0,
+        red: 0,
+    },
+]
+
+export const countVsTimeDataSheet = [
+    {
+        time: "20:30",
+        lightBlue: 0,
+        blue: 5,
+        orange: 1,
+        red: 0,
+    },
+    {
+        time: "20:45",
+        lightBlue: 2,
+        blue: 21,
+        orange: 2,
+        red: 1,
+    },
+    {
+        time: "21:00",
+        lightBlue: 5,
+        blue: 14,
+        orange: 6,
+        red: 1,
+    },
+    {
+        time: "21:15",
+        lightBlue: 2,
+        blue: 18,
+        orange: 5,
+        red: 0,
+    },
+    {
+        time: "21:30",
+        lightBlue: 0,
+        blue: 7,
+        orange: 4,
+        red: 1,
+    },
+    {
+        time: "21:45",
+        lightBlue: 1,
+        blue: 16,
+        orange: 7,
+        red: 1,
+    },
+    {
+        time: "22:00",
+        lightBlue: 0,
+        blue: 7,
+        orange: 4,
+        red: 0,
+    },
+    {
+        time: "22:15",
+        lightBlue: 1,
+        blue: 19,
+        orange: 0,
+        red: 0,
+    },
+    {
+        time: "22:30",
+        lightBlue: 2,
+        blue: 14,
+        orange: 0,
+        red: 0,
+    },
+    {
+        time: "22:45",
+        lightBlue: 2,
+        blue: 13,
+        orange: 5,
+        red: 1,
+    },
+    {
+        time: "23:00",
+        lightBlue: 1,
+        blue: 13,
+        orange: 5,
+        red: 0,
+    },
+    {
+        time: "23:15",
+        lightBlue: 0,
+        blue: 16,
+        orange: 6,
+        red: 0,
+    },
+    {
+        time: "23:30",
+        lightBlue: 0,
+        blue: 7,
+        orange: 0,
+        red: 0,
+    },
+]
