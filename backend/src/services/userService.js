@@ -1,9 +1,9 @@
-const userData = require("../databases/UserData")
+import { getOneUser } from "../databases/UserData.js";
 
-const getOneUser = async (phoneNumber) => {
-    return await userData.getOneUser(phoneNumber);
+const getOne = async (phoneNumber) => {
+    return await getOneUser(phoneNumber);
 };
 
-module.exports = {
-    getOneUser,
-};
+export {
+    getOne,
+}

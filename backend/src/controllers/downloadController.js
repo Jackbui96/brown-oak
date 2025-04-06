@@ -1,7 +1,5 @@
-const { getPublicResumeUrl } = require("../services/downloadService.js");
-const createDownloadModel  = require("../models/Download");
-const { portfolioDb } = require("../../server.mjs");
-const Download = createDownloadModel(portfolioDb)
+import { getPublicResumeUrl } from "../services/downloadService.js";
+import { createDownload } from "../databases/DownloadData.js";
 
 const handleDownloadAndTrack = async (req, res) => {
     try {
@@ -10,12 +8,12 @@ const handleDownloadAndTrack = async (req, res) => {
         const source = req.query.source || "landing-page";
 
         // Log the download
-        await Download.create({
-            timestamp: new Date(),
+        await createDownload(
+            new Date(),
             ip,
             userAgent,
             source
-        });
+        )
 
         const url = await getPublicResumeUrl();
         res.status(200).json({ url });
@@ -25,6 +23,6 @@ const handleDownloadAndTrack = async (req, res) => {
     }
 }
 
-module.exports = {
+export {
     handleDownloadAndTrack,
 }

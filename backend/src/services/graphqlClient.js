@@ -1,4 +1,4 @@
-const axios = require("axios");
+import axios from "axios";
 
 const logResumeDownload = async () => {
     const mutation = `
@@ -15,6 +15,6 @@ const logResumeDownload = async () => {
     });
 };
 
-module.exports = {
+export {
     logResumeDownload,
 }

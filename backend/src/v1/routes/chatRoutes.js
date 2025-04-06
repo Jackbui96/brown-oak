@@ -1,5 +1,5 @@
-const express = require("express");
-const { handleChatRequest } = require("../../controllers/geminiController");
+import express from "express";
+import { handleChatRequest } from "../../controllers/geminiController.js";
 
 const router = express.Router();
 
@@ -9,4 +9,4 @@ router.get("/", async(req, res) => {
 
 router.post("/chatRequest", handleChatRequest);
 
-module.exports = router;
+export default router;

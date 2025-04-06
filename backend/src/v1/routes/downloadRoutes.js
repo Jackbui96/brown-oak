@@ -1,5 +1,5 @@
-const express = require("express");
-const { handleDownloadAndTrack } = require("../../controllers/downloadController");
+import express from "express";
+import { handleDownloadAndTrack } from "../../controllers/downloadController.js";
 
 const router = express.Router();
 
@@ -9,4 +9,4 @@ router.get("/", async(req, res) => {
 
 router.get("/resume", handleDownloadAndTrack);
 
-module.exports = router;
+export default router;

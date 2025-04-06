@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+import { getConnection } from "../databases/index.js"
 
 const downloadSchema = new mongoose.Schema({
     timestamp: {
@@ -19,4 +20,15 @@ const downloadSchema = new mongoose.Schema({
     },
 });
 
-module.exports = (conn) => conn.model("Download", downloadSchema, "resume_downloads");
+// Lazy-load the model
+let Download = null;
+
+const getDownloadModel = () => {
+    if (!Download) {
+        const connection = getConnection("portfolio");
+        Download = connection.model("Download", downloadSchema, "resume_downloads");
+    }
+    return Download;
+}
+
+export default getDownloadModel;

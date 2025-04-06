@@ -1,5 +1,5 @@
-const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
-const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
+import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 const s3 = new S3Client({ region: "us-west-1" });
 
@@ -14,6 +14,6 @@ const getPublicResumeUrl = async () => {
     return await getSignedUrl(s3, command, {expiresIn: 60});
 }
 
-module.exports = {
+export {
     getPublicResumeUrl,
 }

@@ -1,5 +1,5 @@
-const express = require("express");
-const userController = require("../../controllers/userController")
+import express from "express";
+import { handleGetOneUser } from "../../controllers/userController.js";
 
 const router = express.Router();
 
@@ -7,6 +7,6 @@ router.get("/", async(req, res) => {
     res.send("user is running!");
 })
 
-router.get("/:phoneNumber", userController.getOneUser);
+router.get("/:phoneNumber", handleGetOneUser);
 
-module.exports = router;
+export default router;
