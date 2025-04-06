@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# 🧠 API Server — api.a-pani.com
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a production-ready backend server powering portfolio features, live chat, OTP authentication, and resume tracking.
 
-## Available Scripts
+## 🚀 Tech Stack
 
-In the project directory, you can run:
+- **Node.js** with ES Modules
+- **Express.js** for REST APIs
+- **Apollo GraphQL** for schema-driven data access
+- **MongoDB** with Mongoose and multiple database connections
+- **AWS S3** (signed resume downloads via IAM role)
+- **Swagger** for REST documentation
+- **PM2** for process management
+- **dotenv**, **body-parser**, **CORS**, and **Twilio** for infrastructure and communication
 
-### `npm start`
+## 📂 Project Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+src/
+├── graphql/
+├── models/
+├── services/
+├── controllers/
+├── databases/
+├── v1/routes/
+└── v1/swagger.js
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🔧 REST Endpoints
 
-### `npm test`
+- `GET /v1/download/resume` – Generate a signed resume download URL and log the request
+- `POST /v1/chat/chatRequest` – Communicate with Gemini API to respond to user input
+- `POST /v1/otps` – OTP generation and verification (via Twilio)
+- `GET /v1/docs` – Swagger documentation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🔮 GraphQL
 
-### `npm run build`
+- Endpoint: `/graphql`
+- Queries: `downloads`, `downloadCount`
+- Mutations: `recordResumeDownload`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📜 Setup (Local)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+# Install dependencies
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Run the server
+npm run server
+```
 
-### `npm run eject`
+## 📜 Setup (Server)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+# Install dependencies
+npm install
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# PM2 Setup
+pm2 start npm --name "api.a-pani" -- run server
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# PM2 Restart
+pm2 restart api.a-pani
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🌱 Environment Variables
 
-## Learn More
+```env
+PORT=5000
+ATLAS_URI_PORTFOLIO
+ATLAS_URI_BROWNOAK
+AWS_REGION
+AWS_S3_BUCKET
+GEMINI_KEY
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📘 Swagger Docs
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Once the server is up, visit: [http://localhost:5000/v1/docs](http://localhost:5000/v1/docs)
