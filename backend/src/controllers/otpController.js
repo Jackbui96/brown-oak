@@ -1,10 +1,10 @@
-import { sendOtp, verifyAndHandleUser } from "../services/otpService";
+import { twillioSendOtp, twillioVerifyOtp } from "../services/otpService.js";
 
-const handleSendOtp = async (req, res) => {
+const handleOtpHandshake = async (req, res) => {
     const { phoneNumber } = req.body;
 
     try {
-        await sendOtp(phoneNumber);
+        await twillioSendOtp(phoneNumber);
         res.status(200).send({ message: "OTP sent successfully" });
     } catch (err) {
         res.status(500).send({ error: "Failed to send OTP" });
@@ -19,7 +19,7 @@ const handleVerifyOtp = async (req, res) => {
     }
 
     try {
-        const user = await verifyAndHandleUser(phoneNumber, otp);
+        const user = await twillioVerifyOtp(phoneNumber, otp);
         return res.status(200).send({
             message: "OTP verified successfully",
             user,
@@ -30,6 +30,6 @@ const handleVerifyOtp = async (req, res) => {
 };
 
 export {
-    handleSendOtp,
+    handleOtpHandshake,
     handleVerifyOtp,
 }

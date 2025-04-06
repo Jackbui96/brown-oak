@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { getConnection } from "../databases/index.js";
 
 const userSchema = new mongoose.Schema({
     phoneNumber: { type: String, unique: true, required: true },
@@ -6,5 +7,14 @@ const userSchema = new mongoose.Schema({
     lastLoggedIn: {type: Date, default: Date.now },
 })
 
-const User = mongoose.model("User", userSchema, "users");
-export default User;
+let User = null;
+
+const getUserModel = () => {
+    if (!User) {
+        const connection = getConnection("brownOak");
+        User = connection.model("User", userSchema);
+    }
+    return User;
+}
+
+export default getUserModel;

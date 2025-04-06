@@ -6,6 +6,9 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import http from "http";
 
+// MongoDB Server
+import { initDatabaseConnections } from "./src/databases/index.js";
+
 // Apollo Server
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
@@ -23,7 +26,6 @@ import v1_UserRoute from "./src/v1/routes/userRoutes.js"
 
 // Swagger Docs
 import { swaggerDocs as V1SwaggerDocs } from "./src/v1/swagger.js";
-import mongoose from "mongoose";
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -65,15 +67,8 @@ async function startApolloServer() {
     );
 }
 
+await initDatabaseConnections();
 await startApolloServer();
-
-const portfolioDb = mongoose.createConnection(process.env.ATLAS_URI_PORTFOLIO);
-portfolioDb.once("open", () => console.log("✅ MongoDB Portfolio connected"));
-portfolioDb.on("error", (err) => console.error("❌ MongoDB Portfolio error:", err));
-
-const brownDustDb = mongoose.createConnection(process.env.ATLAS_URI_BROWNDUST);
-brownDustDb.once("open", () => console.log("✅ MongoDB BrownDust connected"));
-brownDustDb.on("error", (err) => console.error("❌ MongoDB BrownDust error:", err));
 
 const port = process.env.PORT || 3001;
 httpServer.listen(port, () => {

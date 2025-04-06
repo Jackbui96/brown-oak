@@ -1,7 +1,10 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import twilioClient from "../api-clients/twilioClient.js";
 import { findOrCreateUser } from "../databases/UserData.js";
 
-const sendOtp = async (phoneNumber) => {
+const twillioSendOtp = async (phoneNumber) => {
     try {
         await twilioClient.verify.v2
             .services(process.env.TWILIO_VERIFICATIONS_SID)
@@ -10,26 +13,29 @@ const sendOtp = async (phoneNumber) => {
                 to: phoneNumber
             });
     } catch (error) {
-        throw new Error("Send OTP failed: " + error.message);
+        throw new Error("Send OTP failed: " + error);
     }
 }
 
-const verifyAndHandleUser = async (phoneNumber, otp) => {
-    const verification = await twilioClient.verify.v2
-        .services(process.env.TWILIO_VERIFICATIONS_SID)
-        .verificationChecks.create({
-            to: phoneNumber,
-            code: otp,
-        });
+const twillioVerifyOtp = async (phoneNumber, otp) => {
+    try {
+        const verification = await twilioClient.verify.v2
+            .services(process.env.TWILIO_VERIFICATIONS_SID)
+            .verificationChecks.create({
+                to: phoneNumber,
+                code: otp,
+            });
 
-    if (verification.status !== "approved") {
-        throw new Error("Invalid or expired OTP");
+        if (verification.status !== "approved") {
+            throw new Error("Invalid or expired OTP");
+        }
+        return await findOrCreateUser(phoneNumber);
+    } catch (error) {
+        throw new Error("Twillio Verification failed: " + error);
     }
-
-    return await findOrCreateUser(phoneNumber);
 };
 
 export {
-    sendOtp,
-    verifyAndHandleUser,
+    twillioSendOtp,
+    twillioVerifyOtp,
 }
