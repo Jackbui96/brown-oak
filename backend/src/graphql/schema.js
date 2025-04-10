@@ -9,6 +9,7 @@ const typeDefs = `#graphql
 
   type Mutation {
     recordResumeDownload(source: String): DownloadLog
+    trackVisit(path: String!, userAgent: String!): Boolean
   }
 
   type Query {
