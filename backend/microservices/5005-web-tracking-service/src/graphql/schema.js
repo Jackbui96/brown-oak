@@ -1,20 +1,10 @@
 const typeDefs = `#graphql
-  type DownloadLog {
-    _id: ID!
-    timestamp: String!
-    ip: String
-    userAgent: String
-    source: String
-  }
-
   type Mutation {
-    recordResumeDownload(source: String): DownloadLog
     trackVisit(path: String!, userAgent: String!): Boolean
   }
 
   type Query {
-    downloads(limit: Int): [DownloadLog]
-    downloadCount: Int
+    _empty: String
   }
 `;
 
