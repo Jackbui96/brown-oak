@@ -1,5 +1,5 @@
 import { getPublicResumeUrl } from "../services/downloadService.js";
-import { createDownload } from "../databases/DownloadData.js";
+import { createDownload } from "../databases/ResumeRepo.js";
 
 const handleDownloadAndTrack = async (req, res) => {
     try {

@@ -1,8 +1,8 @@
-import getDownloadModel from "../models/Download.js";
+import { getDownloadModel } from "../models/ModelFactory.js";
 
 const createDownload = async (timestamp, ip, userAgent, source) => {
     try {
-        const Download = getDownloadModel();
+        const Download = getDownloadModel("portfolio");
 
         let download = new Download({
             timestamp: timestamp,

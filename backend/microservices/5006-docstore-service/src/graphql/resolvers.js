@@ -5,9 +5,6 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 
 import Download from "../models/Download.js";
-import { getClientIp, getGeoInfo } from "../services/ipLookupService.js";
-import getDailyVisit from "../models/DailyVisit.js";
-import { createDailyVisit, updateVisit } from "../databases/VisitData.js";
 
 const resolvers = {
     Query: {
@@ -29,26 +26,6 @@ const resolvers = {
             await newDownload.save();
             return newDownload;
         },
-
-        trackVisit: async (_, { path, userAgent }, { req }) => {
-            const ip = getClientIp(req);
-            const date = dayjs().tz("America/Los_Angeles").format("YYYY-MM-DD");
-
-            const DailyVisit = getDailyVisit();
-            const exist = await DailyVisit.findOne({ ip, date });
-
-            if (exist) {
-                await updateVisit(ip, date, path, userAgent);
-            } else {
-                const { city, zip } = await getGeoInfo(ip);
-
-                await createDailyVisit(
-                    ip, date, 1, [userAgent], [path], city, zip
-                );
-            }
-
-            return true;
-        }
     },
 };
 
