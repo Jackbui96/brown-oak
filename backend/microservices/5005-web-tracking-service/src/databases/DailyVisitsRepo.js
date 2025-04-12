@@ -1,8 +1,8 @@
-import getDailyVisit from "../models/DailyVisit.js";
+import { getDailyVisitsModel } from "../models/ModelFactory.js";
 
-const createDailyVisit = async (ip, date, count, userAgents, paths, city, zip) => {
+const createDailyVisits = async (ip, date, count, userAgents, paths, city, zip, dbName) => {
     try {
-        const DailyVisit = getDailyVisit();
+        const DailyVisit = getDailyVisitsModel(dbName);
 
         let dailyVisit = new DailyVisit({ ip, date, count, userAgents, paths, city, zip });
 
@@ -13,9 +13,9 @@ const createDailyVisit = async (ip, date, count, userAgents, paths, city, zip) =
     }
 };
 
-const updateVisit = async (ip, date, path, userAgent) => {
+const updateDailyVisits = async (ip, date, path, userAgent, dbName) => {
     try {
-        const DailyVisit = getDailyVisit();
+        const DailyVisit = getDailyVisitsModel(dbName);
 
         return await DailyVisit.updateOne(
             { ip, date },
@@ -34,6 +34,6 @@ const updateVisit = async (ip, date, path, userAgent) => {
 };
 
 export {
-    createDailyVisit,
-    updateVisit,
+    createDailyVisits,
+    updateDailyVisits,
 };
