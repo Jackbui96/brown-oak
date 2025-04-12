@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import twilioClient from "../api-clients/twilioClient.js";
-import { findOrCreateUser } from "../databases/UserData.js";
+import { findOrCreateUser } from "../databases/userRepo.js";
 
 const twillioSendOtp = async (phoneNumber) => {
     try {
@@ -17,7 +17,7 @@ const twillioSendOtp = async (phoneNumber) => {
     }
 }
 
-const twillioVerifyOtp = async (phoneNumber, otp) => {
+const twillioVerifyOtp = async (phoneNumber, otp, dbName) => {
     try {
         const verification = await twilioClient.verify.v2
             .services(process.env.TWILIO_VERIFICATIONS_SID)
@@ -29,7 +29,7 @@ const twillioVerifyOtp = async (phoneNumber, otp) => {
         if (verification.status !== "approved") {
             throw new Error("Invalid or expired OTP");
         }
-        return await findOrCreateUser(phoneNumber);
+        return await findOrCreateUser(phoneNumber, dbName);
     } catch (error) {
         throw new Error("Twillio Verification failed: " + error);
     }

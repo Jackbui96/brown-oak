@@ -7,7 +7,7 @@ import bodyParser from "body-parser";
 import http from "http";
 
 // MongoDB Server
-import { initDatabaseConnections } from "./src/databases/index.js";
+import { initDatabaseConnections } from "./databases/index.js";
 
 // Apollo Server
 import { ApolloServer } from "@apollo/server";
@@ -15,17 +15,15 @@ import { expressMiddleware } from "@apollo/server/express4";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 
 // GraphQL schema and resolvers
-import typeDefs from "./src/graphql/schema.js";
-import resolvers from "./src/graphql/resolvers.js";
+import typeDefs from "./graphql/schema.js";
+import resolvers from "./graphql/resolvers.js";
 
 // REST Routes
-import v1_ChatRoutes from "./src/v1/routes/chatRoutes.js";
-import v1_downloadRoutes from "./src/v1/routes/downloadRoutes.js";
-import v1_OtpRoute from "./src/v1/routes/otpRoutes.js";
-import v1_UserRoute from "./src/v1/routes/userRoutes.js"
+import v1_OtpRoute from "./v1/routes/otpRoutes.js";
+import v1_UserRoute from "./v1/routes/userRoutes.js"
 
 // Swagger Docs
-import { swaggerDocs as V1SwaggerDocs } from "./src/v1/swagger.js";
+import { swaggerDocs as V1SwaggerDocs } from "./v1/swagger.js";
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -40,10 +38,8 @@ app.get("/", (req, res) => {
 })
 
 // REST routes
-app.use("/v1/chat", v1_ChatRoutes);
-app.use("/v1/download", v1_downloadRoutes);
 app.use("/v1/otps", v1_OtpRoute);
-app.use("/v1/users", v1_UserRoute)
+app.use("/v1/users", v1_UserRoute);
 
 // Setup Apollo Server with Express
 async function startApolloServer() {
@@ -75,4 +71,3 @@ httpServer.listen(port, () => {
     console.log(`Server running on port ${port}`);
     V1SwaggerDocs(app, port)
 });
-

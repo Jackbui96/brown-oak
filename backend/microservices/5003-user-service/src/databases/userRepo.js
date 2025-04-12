@@ -1,17 +1,17 @@
-import getUserModel from "../models/User.js";
+import { getUserModel } from "../models/modelFactory.js";
 
-const getOneUser = async (phoneNumber) => {
+const getOneUser = async (phoneNumber, dbName) => {
     try {
-        const User = getUserModel();
+        const User = getUserModel(dbName);
         return await User.findOne({ phoneNumber });
     } catch (e) {
         throw new Error("Database query failed: " + e.message);
     }
 };
 
-const findOrCreateUser = async (phoneNumber) => {
+const findOrCreateUser = async (phoneNumber, dbName) => {
     try {
-        const User = getUserModel();
+        const User = getUserModel(dbName);
         let user = await User.findOne({ phoneNumber });
 
         if (!user) {
