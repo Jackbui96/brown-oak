@@ -4,10 +4,10 @@ import { handleOtpHandshake, handleVerifyOtp } from "../../controllers/otpContro
 const router = express.Router();
 
 router.get("/", async(req, res) => {
-    res.send("otp is running!");
+    res.send("auth is running!");
 });
 
-router.post("/send-otp", handleOtpHandshake);
-router.post("/verify-otp", handleVerifyOtp);
+router.post("/otp", handleOtpHandshake);
+router.post("/otp/verify", handleVerifyOtp);
 
 export default router;

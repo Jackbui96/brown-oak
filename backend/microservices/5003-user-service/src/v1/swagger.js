@@ -7,7 +7,7 @@ const options = {
         info: { title: "Crossfit WOD API", version: "1.0.0" },
     },
     apis: [
-        "./routes/otpRoutes.js",
+        "./routes/authRoutes.js",
         "./routes/userRoutes.js",
         "./models/userRepo.js",
     ],

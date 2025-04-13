@@ -1,11 +1,20 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 import twilio from "twilio";
 
-const twilioClient = twilio(
-    process.env.TWILIO_SID,
-    process.env.TWILIO_AUTH_TOKEN
-);
+// Wrap Twilio Client in a factory function to prevent it from init before SSM has loaded
 
-export default twilioClient;
+let client= null;
+
+export const getTwilioClient = () => {
+    if (!client) {
+        const sid = process.env.TWILIO_SID;
+        const token = process.env.TWILIO_AUTH_TOKEN;
+
+        if (!sid || !token) {
+            throw new Error("Twilio SID or token not available in env");
+        }
+
+        client = twilio(sid, token);
+    }
+
+    return client;
+}

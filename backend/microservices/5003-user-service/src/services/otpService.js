@@ -1,12 +1,10 @@
-import dotenv from "dotenv";
-dotenv.config();
-
-import twilioClient from "../api-clients/twilioClient.js";
+import { getTwilioClient } from "../api-clients/twilioClient.js";
 import { findOrCreateUser } from "../databases/userRepo.js";
 
 const twillioSendOtp = async (phoneNumber) => {
     try {
-        await twilioClient.verify.v2
+        const client = getTwilioClient();
+        await client.verify.v2
             .services(process.env.TWILIO_VERIFICATIONS_SID)
             .verifications.create({
                 channel: "sms",
@@ -19,7 +17,8 @@ const twillioSendOtp = async (phoneNumber) => {
 
 const twillioVerifyOtp = async (phoneNumber, otp, dbName) => {
     try {
-        const verification = await twilioClient.verify.v2
+        const client = getTwilioClient();
+        const verification = await client.verify.v2
             .services(process.env.TWILIO_VERIFICATIONS_SID)
             .verificationChecks.create({
                 to: phoneNumber,

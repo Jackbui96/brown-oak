@@ -7,6 +7,7 @@ const handleOtpHandshake = async (req, res) => {
         await twillioSendOtp(phoneNumber);
         res.status(200).send({ message: "OTP sent successfully" });
     } catch (err) {
+        console.error("err: ", err)
         res.status(500).send({ error: "Failed to send OTP" });
     }
 };

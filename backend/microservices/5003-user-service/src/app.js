@@ -1,10 +1,10 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import http from "http";
+
+// Get Config from AWS SSM
+import { loadConfigFromSSM } from "./utils/loadConfig.js";
 
 // MongoDB Server
 import { initDatabaseConnections } from "./databases/index.js";
@@ -19,8 +19,8 @@ import typeDefs from "./graphql/schema.js";
 import resolvers from "./graphql/resolvers.js";
 
 // REST Routes
-import v1_OtpRoute from "./v1/routes/otpRoutes.js";
-import v1_UserRoute from "./v1/routes/userRoutes.js"
+import v1_AuthRoutes from "./v1/routes/authRoutes.js";
+import v1_UserRoutes from "./v1/routes/userRoutes.js"
 
 // Swagger Docs
 import { swaggerDocs as V1SwaggerDocs } from "./v1/swagger.js";
@@ -38,8 +38,13 @@ app.get("/", (req, res) => {
 })
 
 // REST routes
-app.use("/v1/otps", v1_OtpRoute);
-app.use("/v1/users", v1_UserRoute);
+app.use("/v1/auth", v1_AuthRoutes);
+app.use("/v1/user", v1_UserRoutes);
+
+await loadConfigFromSSM([
+    "databases",
+    "keys/twilio"
+]);
 
 // Setup Apollo Server with Express
 async function startApolloServer() {
@@ -66,8 +71,24 @@ async function startApolloServer() {
 await initDatabaseConnections();
 await startApolloServer();
 
-const port = process.env.PORT || 3001;
-httpServer.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-    V1SwaggerDocs(app, port)
+const userServicePort = 5003;
+httpServer.listen(userServicePort, () => {
+    console.log(`Server running on port ${userServicePort}`);
+    V1SwaggerDocs(app, userServicePort)
+});
+
+process.on("SIGINT", () => {
+    console.log("Received SIGINT. Shutting down...");
+    httpServer.close(() => {
+        console.log("Server closed.");
+        process.exit(0);
+    });
+});
+
+process.on("SIGTERM", () => {
+    console.log("Received SIGTERM. Shutting down...");
+    httpServer.close(() => {
+        console.log("Server closed.");
+        process.exit(0);
+    });
 });
