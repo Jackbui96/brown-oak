@@ -7,6 +7,6 @@ router.get("/", async(req, res) => {
     res.send("chat is running!");
 });
 
-router.post("/chatRequest", handleChatRequest);
+router.post("/chat", handleChatRequest);
 
 export default router;
