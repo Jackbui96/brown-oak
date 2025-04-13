@@ -1,3 +1,9 @@
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc.js";
+import timezone from "dayjs/plugin/timezone.js";
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
 import { getUserModel } from "../models/modelFactory.js";
 
 const getOneUser = async (phoneNumber, dbName) => {
@@ -13,16 +19,17 @@ const findOrCreateUser = async (phoneNumber, dbName) => {
     try {
         const User = getUserModel(dbName);
         let user = await User.findOne({ phoneNumber });
+        const now = dayjs().tz("America/Los_Angeles").toDate();
 
         if (!user) {
             user = new User({
                 phoneNumber: phoneNumber,
-                registered: new Date(),
-                lastLoggedIn: new Date()
+                registered: now,
+                lastLoggedIn: now
             });
             await user.save();
         } else {
-            user.lastLoggedIn = new Date();
+            user.lastLoggedIn = now;
             await user.save();
         }
 
