@@ -1,10 +1,10 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import http from "http";
+
+// Get Config from AWS SSM
+import { loadConfigFromSSM } from "./utils/loadConfig.js";
 
 // MongoDB Server
 import { initDatabaseConnections } from "./databases/index.js";
@@ -32,6 +32,10 @@ app.use(
     cors(),
     bodyParser.json(),
 );
+
+await loadConfigFromSSM([
+    "databases",
+]);
 
 // Setup Apollo Server with Express
 async function startApolloServer() {
@@ -62,8 +66,8 @@ async function startApolloServer() {
 await initDatabaseConnections();
 await startApolloServer();
 
-const port = process.env.PORT || 3001;
-httpServer.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-    V1SwaggerDocs(app, port)
+const webTrackingPort = 5005;
+httpServer.listen(webTrackingPort, () => {
+    console.log(`Server running on port ${webTrackingPort}`);
+    V1SwaggerDocs(app, webTrackingPort)
 });

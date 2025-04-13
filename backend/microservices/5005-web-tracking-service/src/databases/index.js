@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
-dotenv.config();
 
 const connections = {
     brownOak: null,
@@ -19,7 +17,7 @@ const initDatabaseConnections = async () => {
             process.env.ATLAS_URI_BROWNOAK,
             connectionOptions
         );
-        setupEvents(connections.brownOak, "BrownOak", process.env.ATLAS_URI_BROWNOAK);
+        setupEvents(connections.brownOak, "BrownOak");
     }
 
     if (!connections.moodie) {
@@ -27,7 +25,7 @@ const initDatabaseConnections = async () => {
             process.env.ATLAS_URI_MOODIE,
             connectionOptions
         );
-        setupEvents(connections.moodie, "Moodie", process.env.ATLAS_URI_MOODIE);
+        setupEvents(connections.moodie, "Moodie");
     }
 
     if (!connections.portfolio) {
@@ -35,7 +33,7 @@ const initDatabaseConnections = async () => {
             process.env.ATLAS_URI_PORTFOLIO_SITE,
             connectionOptions
         );
-        setupEvents(connections.portfolio, "PortfolioSite", process.env.ATLAS_URI_PORTFOLIO_SITE);
+        setupEvents(connections.portfolio, "PortfolioSite");
     }
 
     return connections;
@@ -48,7 +46,7 @@ const getConnection = (dbName) => {
     return connections[dbName];
 };
 
-const setupEvents = (conn, label, uri) => {
+const setupEvents = (conn, label) => {
     conn.once("open", () => console.log(`✅ MongoDB ${label} connected`));
 
     conn.on("error", (err) => {

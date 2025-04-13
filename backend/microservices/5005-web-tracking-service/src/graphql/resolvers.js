@@ -15,7 +15,7 @@ const resolvers = {
     Mutation: {
         trackVisit: async (_, { path, userAgent }, { req, dbName }) => {
             const ip = getClientIp(req);
-            const date = dayjs().tz("America/Los_Angeles").format("YYYY-MM-DD");
+            const date = dayjs().tz("America/Los_Angeles").toDate();
 
             const DailyVisit = getDailyVisitsModel(dbName);
             const exist = await DailyVisit.findOne({ ip, date });
