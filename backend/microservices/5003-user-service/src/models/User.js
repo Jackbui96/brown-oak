@@ -6,16 +6,38 @@ dayjs.extend(timezone);
 
 import mongoose from 'mongoose';
 
-const userSchema = new mongoose.Schema({
-    phoneNumber: { type: String, unique: true, required: true },
-    registered: {
-        type: Date,
-        default: () => dayjs().tz("America/Los_Angeles").toDate()
-    },
-    lastLoggedIn: {
-        type: Date,
-        default: () => dayjs().tz("America/Los_Angeles").toDate()
-    },
-});
+function getUserSchema(appName) {
+    if (appName === "moodie") {
+        return new mongoose.Schema({
+            firebaseId: { type: String, unique: true, required: true },
+            email: { type: String, required: true },
+            displayName:  String ,
+            photoURL: String,
+            favoriteMovies: [String] ,
+            registered: {
+                type: Date,
+                default: () => dayjs().tz("America/Los_Angeles").toDate()
+            },
+            lastLoggedIn: {
+                type: Date,
+                default: () => dayjs().tz("America/Los_Angeles").toDate()
+            },
+        })
+    } else if (appName === "traffic-monitor") {
+        return new mongoose.Schema({
+            phoneNumber: { type: String, unique: true, required: true },
+            registered: {
+                type: Date,
+                default: () => dayjs().tz("America/Los_Angeles").toDate()
+            },
+            lastLoggedIn: {
+                type: Date,
+                default: () => dayjs().tz("America/Los_Angeles").toDate()
+            },
+        });
+    } else {
+        throw new Error("No suitable schema for requested application!")
+    }
+}
 
-export default userSchema;
+export default getUserSchema;

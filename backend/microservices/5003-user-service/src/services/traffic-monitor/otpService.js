@@ -1,5 +1,5 @@
-import { getTwilioClient } from "../api-clients/twilioClient.js";
-import { findOrCreateUser } from "../databases/userRepo.js";
+import { getTwilioClient } from "../../api-clients/twilioClient.js";
+import { findOrCreateUser } from "../../databases/traffic-monitor/userRepo.js";
 
 const twillioSendOtp = async (phoneNumber) => {
     try {

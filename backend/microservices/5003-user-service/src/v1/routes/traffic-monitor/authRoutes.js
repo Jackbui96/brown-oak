@@ -1,10 +1,10 @@
 import express from "express";
-import { handleOtpHandshake, handleVerifyOtp } from "../../controllers/otpController.js";
+import { handleOtpHandshake, handleVerifyOtp } from "../../../controllers/traffic-monitor/otpController.js";
 
 const router = express.Router();
 
 router.get("/", async(req, res) => {
-    res.send("auth is running!");
+    res.send("Traffic Monitor auth is running!");
 });
 
 router.post("/otp", handleOtpHandshake);

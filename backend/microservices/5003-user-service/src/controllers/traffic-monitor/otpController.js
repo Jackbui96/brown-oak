@@ -1,4 +1,4 @@
-import { twillioSendOtp, twillioVerifyOtp } from "../services/otpService.js";
+import { twillioSendOtp, twillioVerifyOtp } from "../../services/traffic-monitor/otpService.js";
 
 const handleOtpHandshake = async (req, res) => {
     const { phoneNumber } = req.body;

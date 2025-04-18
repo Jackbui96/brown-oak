@@ -4,20 +4,20 @@ import timezone from "dayjs/plugin/timezone.js";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-import { getUserModel } from "../models/modelFactory.js";
+import { getUserModel } from "../../models/modelFactory.js";
 
-const getOneUser = async (phoneNumber, dbName) => {
+const getOneUser = async (phoneNumber) => {
     try {
-        const User = getUserModel(dbName);
+        const User = getUserModel("traffic-monitor");
         return await User.findOne({ phoneNumber });
     } catch (e) {
         throw new Error("Database query failed: " + e.message);
     }
 };
 
-const findOrCreateUser = async (phoneNumber, dbName) => {
+const findOrCreateUser = async (phoneNumber) => {
     try {
-        const User = getUserModel(dbName);
+        const User = getUserModel("traffic-monitor");
         let user = await User.findOne({ phoneNumber });
         const now = dayjs().tz("America/Los_Angeles").toDate();
 

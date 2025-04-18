@@ -1,6 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -23,9 +20,14 @@ import v1_resumeRoute from "./v1/routes/resumeRoute.js";
 
 // Swagger Docs
 import { swaggerDocs as V1SwaggerDocs } from "./v1/swagger.js";
+import { loadConfigFromSSM } from "./utils/loadConfig.js";
 
 const app = express();
 const httpServer = http.createServer(app);
+
+await loadConfigFromSSM([
+    "databases",
+]);
 
 // Middlewares
 app.use(cors());
@@ -64,8 +66,8 @@ async function startApolloServer() {
 await initDatabaseConnections();
 await startApolloServer();
 
-const port = process.env.PORT || 3001;
-httpServer.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-    V1SwaggerDocs(app, port)
+const docstorePort = 5006;
+httpServer.listen(docstorePort, () => {
+    console.log(`Server running on port ${docstorePort}`);
+    V1SwaggerDocs(app, docstorePort)
 });

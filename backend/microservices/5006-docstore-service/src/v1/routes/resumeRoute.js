@@ -3,6 +3,6 @@ import { handleDownloadAndTrack } from "../../controllers/resumeController.js";
 
 const router = express.Router();
 
-router.get("/download", handleDownloadAndTrack);
+router.get("/", handleDownloadAndTrack);
 
 export default router;

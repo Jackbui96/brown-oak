@@ -1,4 +1,4 @@
-import { getOne } from "../services/userService.js";
+import { getOne } from "../../services/traffic-monitor/userService.js";
 
 const handleGetOneUser = async (req, res) => {
     const { phoneNumber } = req.params;

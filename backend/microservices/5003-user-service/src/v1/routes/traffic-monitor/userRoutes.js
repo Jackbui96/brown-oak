@@ -1,5 +1,5 @@
 import express from "express";
-import { handleGetOneUser } from "../../controllers/userController.js";
+import { handleGetOneUser } from "../../../controllers/traffic-monitor/userController.js";
 
 const router = express.Router();
 
