@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     apps: [
         {
             name: "5003-user-service",
@@ -45,5 +45,5 @@ export default {
                 PORT: 5007,
             },
         },
-    ]
+    ],
 };
