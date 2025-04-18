@@ -5,7 +5,6 @@ const isLocal = process.env.NODE_ENV !== "production";
 
 const ssm = new SSMClient({
     region: "us-west-1",
-    credentials: isLocal ? fromIni({ profile: "default" }) : undefined,
 });
 
 export const loadConfigFromSSM = async (app, serviceNames) => {
