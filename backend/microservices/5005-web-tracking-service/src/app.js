@@ -50,7 +50,7 @@ async function startApolloServer() {
 
     // Mount GraphQL middleware at /graphql
     app.use(
-        "/graphql",
+        "/web-tracking/graphql",
         cors(),
         bodyParser.json(),
         expressMiddleware(server, {
