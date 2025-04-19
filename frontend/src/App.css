@@ -1,7 +1,0 @@
-@import "tailwindcss";
-
-@theme {
-  --color-ops-teal: #097479;
-  --color-ops-gray: #333333;
-  --color-ops-border: #555555;
-}
