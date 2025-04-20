@@ -16,7 +16,7 @@ app.get('/health', (req, res) => {
 });
 
 // 📘 Swagger UI
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // 404 Fallback
 app.use((req, res) => {
