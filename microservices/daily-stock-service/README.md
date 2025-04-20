@@ -62,16 +62,9 @@ This will:
 
 ## 🗃️ Data Flow
 
-```
-+-------------+         +--------------+         +------------+
-|  Polygon.io | --->    |  BigQuery    | --->    |  Train LSTM|
-+-------------+         +--------------+         +------------+
-                                                         |
-                                                         v
-                                                +------------------+
-                                                | Upload to S3 (.keras)
-                                                +------------------+
-```
+
+![Brown Oak Architecture](../../assets/daily-stock-service-data-flow.svg)
+
 
 ---
 
