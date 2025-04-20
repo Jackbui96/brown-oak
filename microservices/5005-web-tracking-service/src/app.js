@@ -18,9 +18,6 @@ import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHt
 import typeDefs from "./graphql/schema.js";
 import resolvers from "./graphql/resolvers.js";
 
-// Swagger Docs
-import { swaggerDocs as V1SwaggerDocs } from "./swagger.js";
-
 const app = express();
 const httpServer = http.createServer(app);
 
@@ -69,5 +66,4 @@ await startApolloServer();
 const webTrackingPort = 5005;
 httpServer.listen(webTrackingPort, () => {
     console.log(`Server running on port ${webTrackingPort}`);
-    V1SwaggerDocs(app, webTrackingPort)
 });

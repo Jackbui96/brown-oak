@@ -25,9 +25,6 @@ import v1_TrafficMonitorAuthRoutes from "./v1/routes/traffic-monitor/authRoutes.
 import v1_MoodieAuthRoutes from "./v1/routes/moodie/authRoutes.js";
 import v1_UserRoutes from "./v1/routes/traffic-monitor/userRoutes.js";
 
-// Swagger Docs
-import { swaggerDocs as V1SwaggerDocs } from "./v1/swagger.js";
-
 const app = express();
 const httpServer = http.createServer(app);
 
@@ -94,7 +91,6 @@ await startApolloServers();
 const userServicePort = 5003;
 httpServer.listen(userServicePort, () => {
     console.log(`Server running on port ${userServicePort}`);
-    V1SwaggerDocs(app, userServicePort);
 });
 
 process.on("SIGINT", () => {

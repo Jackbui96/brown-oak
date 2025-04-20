@@ -1,0 +1,55 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Brown Oak API",
+    "version": "1.0.0",
+    "description": "Unified API documentation for all microservices"
+  },
+  "servers": [
+    {
+      "url": "https://api.a-pani.com/v1"
+    }
+  ],
+  "paths": {
+    "/moodie/auth/google-signin": {
+      "post": {
+        "summary": "Firebase login for Moodie",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/traffic-monitor/auth/otp": {
+      "post": {
+        "summary": "OTP Generation via Twilio",
+        "responses": {
+          "200": {
+            "description": "OTP Sent"
+          }
+        }
+      }
+    },
+    "/gemini/chat": {
+      "post": {
+        "summary": "Chat with Gemini",
+        "responses": {
+          "200": {
+            "description": "Gemini Response"
+          }
+        }
+      }
+    },
+    "/resume": {
+      "get": {
+        "summary": "Get signed resume download link",
+        "responses": {
+          "200": {
+            "description": "Signed URL"
+          }
+        }
+      }
+    }
+  }
+}

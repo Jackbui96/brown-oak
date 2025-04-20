@@ -8,6 +8,7 @@ SERVICES=(
     "5005-web-tracking-service"
     "5006-docstore-service"
     "5007-config-service"
+    "9999-swagger-service"
 )
 
 for SERVICE in "${SERVICES[@]}"

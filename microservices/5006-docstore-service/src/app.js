@@ -18,8 +18,6 @@ import resolvers from "./graphql/resolvers.js";
 // REST Routes
 import v1_resumeRoute from "./v1/routes/resumeRoute.js";
 
-// Swagger Docs
-import { swaggerDocs as V1SwaggerDocs } from "./v1/swagger.js";
 import { loadConfigFromSSM } from "./utils/loadConfig.js";
 
 const app = express();
@@ -69,5 +67,4 @@ await startApolloServer();
 const docstorePort = 5006;
 httpServer.listen(docstorePort, () => {
     console.log(`Server running on port ${docstorePort}`);
-    V1SwaggerDocs(app, docstorePort)
 });

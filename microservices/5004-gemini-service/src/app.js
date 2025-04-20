@@ -7,9 +7,6 @@ import http from "http";
 // REST Routes
 import v1_ChatRoutes from "./v1/routes/chatRoutes.js";
 
-// Swagger Docs
-import { swaggerDocs as V1SwaggerDocs } from "./v1/swagger.js";
-
 await loadConfigFromSSM([
     "keys/gemini",
 ]);
@@ -37,5 +34,4 @@ app.use(
 const geminiPort = 5004;
 httpServer.listen(geminiPort, () => {
     console.log(`Server running on port ${geminiPort}`);
-    V1SwaggerDocs(app, geminiPort)
 });

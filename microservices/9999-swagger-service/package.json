@@ -1,0 +1,16 @@
+{
+  "name": "swagger-service",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon --signal SIGTERM src/app.js"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "swagger-ui-express": "^5.0.1"
+  }
+}
