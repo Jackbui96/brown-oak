@@ -45,7 +45,14 @@ daily-stock-service/
 
 ## 🧪 Running the Service
 
-### ▶️ Fetch + Train (full run)
+### 1. Install Dependencies
+
+```bash
+
+pip install -r requirements.txt
+```
+
+### 2. Fetch + Train (full run)
 
 ```bash
 
@@ -62,9 +69,7 @@ This will:
 
 ## 🗃️ Data Flow
 
-
 ![Brown Oak Architecture](../../assets/daily-stock-service-data-flow.svg)
-
 
 ---
 
@@ -75,10 +80,10 @@ This will:
 - BigQuery dataset + table already created
 - S3 bucket created (e.g. `brown-oak-stock-prediction-models`)
 - IAM permissions for:
-    - `ssm:GetParameter`
-    - `s3:PutObject`
-    - `s3:ListBucket`
-    - `bigquery.jobs.create`, `bigquery.tables.getData`
+  - `ssm:GetParameter`
+  - `s3:PutObject`
+  - `s3:ListBucket`
+  - `bigquery.jobs.create`, `bigquery.tables.getData`
 
 ---
 
