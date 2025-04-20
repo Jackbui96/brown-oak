@@ -10,11 +10,6 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// 🩺 Health Check
-app.get('/health', (req, res) => {
-    res.status(200).send('API Gateway is up and running!');
-});
-
 // 📘 Swagger UI
 app.use('/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
