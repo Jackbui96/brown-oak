@@ -74,21 +74,19 @@ Navigate to each microservice directory and run:
 # Install dependencies
 npm install
 
-# Run local server
+# Start the local development server
 npm run server
 ```
 
 ### Production (PM2)
 
-```bash
-# Start production service with PM2
-pm2 start ecosystem.config.js
+To install all dependencies and start all services using PM2:
 
-# Restart (after updates)
-pm2 restart all
-
-# Test for 
 ```
+./setup.sh
+```
+
+This script installs dependencies for all microservices and then launches them using PM2 with the configuration from ecosystem.config.js.
 
 ### Debugging
 ```
