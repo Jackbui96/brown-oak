@@ -26,7 +26,7 @@ Brown Oak is a **production-ready microservice backend** powering a full-stack d
 
 ## 🗺 Architecture Overview
 
-![Brown Oak Architecture](.\assets\brown-oak-architecture.svg)
+![Brown Oak Architecture](assets/brown-oak-architecture.svg)
 
 ---
 
