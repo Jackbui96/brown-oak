@@ -1,0 +1,7 @@
+grpcio
+grpcio-tools
+tensorflow
+numpy
+scikit-learn
+google-cloud-bigquery
+boto3

@@ -3,10 +3,11 @@
 echo "📦 Installing dependencies for microservices..."
 
 # Python (5001)
-echo "🐍 Installing Python dependencies for 5001-stock-prediction-service..."
-cd ./microservices/5001-stock-prediction-service || exit
+echo "🐍 Installing Python dependencies for 5001-stock-predict-core..."
+cd ./microservices/5001-stock-predict-core || exit
 python3 -m venv .venv
 source .venv/bin/activate
+pip install --upgrade pip
 pip install -r requirements.txt
 
 echo "🛠️ Generating gRPC Python files..."
