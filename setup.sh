@@ -1,7 +1,33 @@
 #!/bin/bash
 
-echo "📦 Installing dependencies for all microservices..."
+echo "📦 Installing dependencies for microservices..."
 
+# Python (5001)
+echo "🐍 Installing Python dependencies for 5001-stock-prediction-service..."
+cd ./microservices/5001-stock-prediction-service || exit
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+echo "🛠️ Generating gRPC Python files..."
+python -m grpc_tools.protoc -I proto --python_out=. --grpc_python_out=. proto/stock_predict.proto
+
+deactivate
+cd - || exit
+
+# Spring Boot (5002)
+echo "☕ Building Spring Boot service 5002-stock-api-gateway..."
+cd ./microservices/5002-stock-api-gateway || exit
+
+echo "🛠️ Generating gRPC Java files..."
+./gradlew generateProto
+
+echo "🔨 Building Spring Boot app..."
+./gradlew build --no-daemon
+
+cd - || exit
+
+# Other services (Node-based)
 SERVICES=(
     "5003-user-service"
     "5004-gemini-service"
@@ -13,21 +39,9 @@ SERVICES=(
 
 for SERVICE in "${SERVICES[@]}"
 do
-    echo "🔧 Installing for $SERVICE..."
+    echo "🔧 Installing Node dependencies for $SERVICE..."
     (cd ./microservices/$SERVICE && npm install)
 done
 
-echo "🧠 Generating gRPC for Python stock-predict-core..."
-
-cd ./microservices/5001-stock-predict-core
-python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. stock.proto
-
-echo "🛠️ Generating gRPC and building Spring Boot stock-api-gateway..."
-
-cd ../5002-stock-api-gateway
-./gradlew generateProto  # Optional: if using the protobuf Gradle plugin
-./gradlew bootJar
-
-cd ../../../
 echo "🚀 Starting all services with PM2..."
 pm2 start ecosystem.config.js
