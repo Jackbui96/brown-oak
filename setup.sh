@@ -20,8 +20,13 @@ cd - || exit
 echo "☕ Building Spring Boot service 5002-stock-api-gateway..."
 cd ./microservices/5002-stock-api-gateway || exit
 
-echo "🛠️ Setting executable permission for gradlew..."
+echo "🛠️ Ensuring Gradle wrapper is ready..."
 chmod +x ./gradlew
+
+if [ ! -f "./gradle/wrapper/gradle-wrapper.jar" ]; then
+  echo "⚙️ gradle-wrapper.jar not found — generating Gradle wrapper..."
+  gradle wrapper
+fi
 
 echo "🛠️ Generating gRPC Java files..."
 ./gradlew generateProto
