@@ -1,11 +1,10 @@
 module.exports = {
     apps: [
         {
-            name: '5001-stock-predict-core',
-            script: 'python3',
-            args: 'server.py',
-            interpreter: '/home/ubuntu/brown-oak/microservices/5001-stock-predict-core/.venv/bin/python',
-            cwd: '/home/ubuntu/brown-oak/microservices/5001-stock-predict-core',
+            name: "5001-stock-predict-core",
+            script: "server.py",  // the actual Python script
+            interpreter: "/home/ubuntu/brown-oak/microservices/5001-stock-predict-core/.venv/bin/python",
+            cwd: "/home/ubuntu/brown-oak/microservices/5001-stock-predict-core",
             watch: false,
             env: {
                 PORT: 5001
