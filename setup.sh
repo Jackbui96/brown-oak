@@ -20,6 +20,9 @@ cd - || exit
 echo "☕ Building Spring Boot service 5002-stock-api-gateway..."
 cd ./microservices/5002-stock-api-gateway || exit
 
+echo "🛠️ Setting executable permission for gradlew..."
+chmod +x ./gradlew
+
 echo "🛠️ Generating gRPC Java files..."
 ./gradlew generateProto
 
