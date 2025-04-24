@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   predict-core:
-    image: 5001-stock-predict-core
+    image: nguyenhkbui/5001-stock-predict-core
     container_name: 5001-predict-core
     ports:
       - "5001:5001"
@@ -10,7 +10,7 @@ services:
       - shared-models:/tmp/models
 
   api-gateway:
-    image: 5002-stock-api-gateway
+    image: nguyenhkbui/5002-stock-api-gateway
     container_name: 5002-stock-api-gateway
     ports:
       - "5002:5002"
