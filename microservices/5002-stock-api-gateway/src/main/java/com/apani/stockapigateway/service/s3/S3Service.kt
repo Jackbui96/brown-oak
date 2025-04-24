@@ -18,12 +18,12 @@ class S3Service (
     @Value("\${aws.downloadDir}") private val downloadDir: String
 ) {
 
-    private val s3Client: S3Client = S3Client.builder()
-        .region(Region.of(region))
-        .credentialsProvider(DefaultCredentialsProvider.create())
-        .build()
-
     fun downloadModel(symbol: String): File {
+        val s3Client: S3Client = S3Client.builder()
+            .region(Region.of(region))
+            .credentialsProvider(DefaultCredentialsProvider.create())
+            .build()
+
         val tempDir = System.getProperty("java.io.tmpdir")
         val fileName  = "2025-04-20/${symbol}_lstm_model.keras".substringAfterLast("/")
         val localPath = Paths.get(tempDir, fileName)
