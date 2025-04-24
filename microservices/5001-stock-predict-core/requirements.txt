@@ -5,3 +5,5 @@ numpy
 scikit-learn
 google-cloud-bigquery
 boto3
+pandas
+db-dtypes
