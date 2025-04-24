@@ -20,7 +20,7 @@ class PredictionService(
 
     private val channel: ManagedChannel by lazy {
         ManagedChannelBuilder
-            .forAddress("localhost", 5001)
+            .forAddress("predict-core", 5001)
             .usePlaintext()
             .build()
     }

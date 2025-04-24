@@ -24,9 +24,8 @@ class S3Service (
             .credentialsProvider(DefaultCredentialsProvider.create())
             .build()
 
-        val tempDir = System.getProperty("java.io.tmpdir")
         val fileName  = "2025-04-20/${symbol}_lstm_model.keras".substringAfterLast("/")
-        val localPath = Paths.get(tempDir, fileName)
+        val localPath = Paths.get(downloadDir, fileName)
 
         if (Files.notExists(localPath)) {
             val request = GetObjectRequest.builder()
