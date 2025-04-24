@@ -13,8 +13,8 @@ module.exports = {
         {
             name: '5002-stock-api-gateway',
             script: 'java',
-            args: '-jar stock-api-gateway-0.0.1-SNAPSHOT.jar',
-            cwd: '/home/ubuntu/brown-oak/microservices/5002-stock-api-gateway',
+            args: "-jar build/libs/stock-api-gateway-0.0.1-SNAPSHOT.jar",
+            cwd: "/home/ubuntu/brown-oak/microservices/5002-stock-api-gateway",
             watch: false,
             env: {
                 PORT: 5002
