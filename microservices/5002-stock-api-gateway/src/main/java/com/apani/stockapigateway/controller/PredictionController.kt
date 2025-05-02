@@ -13,7 +13,12 @@ class PredictionController(
     private val predictionService: PredictionService
 ) {
 
-    private val SOI = arrayOf("TSLA", "COST", "MSFT", "AAPL", "NVDA", "PFE", "KO", "JNJ", "TGT", "PLTR", "AMD")
+    private val SOI = arrayOf(
+        "TSLA", "COST", "MSFT",
+        "AAPL", "NVDA", "PFE",
+        "KO", "JNJ", "TGT",
+        "PLTR", "AMD"
+    )
 
     @GetMapping("/symbols")
     fun getSymbols(): ResponseEntity<Map<String, Array<String>>> {
