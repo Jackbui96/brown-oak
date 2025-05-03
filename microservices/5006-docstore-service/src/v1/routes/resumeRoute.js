@@ -1,8 +1,8 @@
 import express from "express";
-import { handleDownloadAndTrack } from "../../controllers/resumeController.js";
+import { handleDownload } from "../../controllers/resumeController.js";
 
 const router = express.Router();
 
-router.get("/", handleDownloadAndTrack);
+router.get("/", handleDownload);
 
 export default router;
