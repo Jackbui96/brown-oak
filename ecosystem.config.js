@@ -1,6 +1,26 @@
 module.exports = {
     apps: [
         {
+            name: "5001-stock-predict-core",
+            script: "server.py",  // the actual Python script
+            interpreter: "/home/ubuntu/brown-oak/microservices/5001-stock-predict-core/.venv/bin/python",
+            cwd: "/home/ubuntu/brown-oak/microservices/5001-stock-predict-core",
+            watch: false,
+            env: {
+                PORT: 5001
+            }
+        },
+        {
+            name: '5002-stock-api-gateway',
+            script: 'java',
+            args: "-jar build/libs/stock-api-gateway-0.0.1-SNAPSHOT.jar",
+            cwd: "/home/ubuntu/brown-oak/microservices/5002-stock-api-gateway",
+            watch: false,
+            env: {
+                PORT: 5002
+            }
+        },
+        {
             // 👤 Handles user registration, login, and profile info
             name: "5003-user-service",
             script: "./microservices/5003-user-service/src/app.js",

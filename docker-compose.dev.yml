@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  predict-core:
+    image: 5001-stock-predict-core
+    container_name: 5001-predict-core
+    ports:
+      - "5001:5001"
+    volumes:
+      - ~/.aws:/root/.aws
+      - shared-models:/tmp/models
+
+  api-gateway:
+    image: 5002-stock-api-gateway
+    container_name: 5002-stock-api-gateway
+    ports:
+      - "5002:5002"
+    volumes:
+      - ~/.aws:/root/.aws
+      - shared-models:/tmp/models
+    depends_on:
+      - predict-core
+
+volumes:
+  shared-models:

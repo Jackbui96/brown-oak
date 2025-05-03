@@ -1,0 +1,30 @@
+<svg viewBox="45 95 550 215" xmlns="http://www.w3.org/2000/svg">
+  <!-- White background -->
+  <rect x="45" y="95" width="550" height="215" fill="white"/>
+  
+  <!-- Boxes -->
+  <rect x="50" y="100" width="120" height="70" rx="10" fill="#f0f8ff" stroke="#4682b4" stroke-width="2"/>
+  <rect x="250" y="100" width="120" height="70" rx="10" fill="#f0f8ff" stroke="#4682b4" stroke-width="2"/>
+  <rect x="450" y="100" width="120" height="70" rx="10" fill="#f0f8ff" stroke="#4682b4" stroke-width="2"/>
+  <rect x="430" y="230" width="160" height="70" rx="10" fill="#f0f8ff" stroke="#4682b4" stroke-width="2"/>
+  
+  <!-- Arrows -->
+  <path d="M170 135 L250 135" stroke="#4682b4" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <path d="M370 135 L450 135" stroke="#4682b4" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Straight vertical arrow from Train LSTM to Upload to S3 -->
+  <path d="M510 170 L510 230" stroke="#4682b4" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Text -->
+  <text x="110" y="140" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Polygon.io</text>
+  <text x="310" y="140" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">BigQuery</text>
+  <text x="510" y="140" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Train LSTM</text>
+  <text x="510" y="270" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold">Upload to S3 (.keras)</text>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4682b4"/>
+    </marker>
+  </defs>
+</svg>

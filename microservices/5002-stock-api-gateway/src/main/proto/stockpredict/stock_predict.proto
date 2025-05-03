@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package stockpredict;
+
+option java_package = "stockpredict";
+option java_outer_classname = "StockPredict";
+option java_multiple_files = true;  // Changed to true for separate files
+
+service StockPredictService {
+  rpc Predict (PredictRequest) returns (PredictResponse);
+}
+
+message PredictRequest {
+  string symbol = 1;              // e.g. "AAPL"
+  string file_location = 2;       // e.g. "C:\\WINDOWS\\TEMP\\AAPL_lstm_model.keras"
+}
+
+message PredictResponse {
+  string symbol = 1;
+  repeated Prediction predictions = 2;
+  string summary = 3;             // e.g. "AAPL is expected to rise by 2% next week"
+}
+
+message Prediction {
+  string date = 1;                // e.g. "2025-04-22"
+  float actual_price = 2;
+  float predicted_price = 3;
+}
