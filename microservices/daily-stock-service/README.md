@@ -121,7 +121,7 @@ Or use PM2 for managed restarts.
 ## 👤 Author
 
 **Nguyen Bui**  
-[GitHub](https://github.com/Jackbui96) • [LinkedIn](https://www.linkedin.com/in/jackbui96)
+[GitHub](https://github.com/Jackbui96) • [LinkedIn](https://www.linkedin.com/in/nguyen-hk-bui)
 
 ---
 
