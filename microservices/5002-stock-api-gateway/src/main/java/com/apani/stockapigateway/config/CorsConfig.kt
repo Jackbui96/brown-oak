@@ -15,6 +15,7 @@ class CorsConfig {
                     .allowedOrigins(
                         "http://localhost:3000",
                         "http://localhost:3001",
+                        "https://stocksight.a-pani.com",
                         "https://api.a-pani.com",
                     )
                     .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
