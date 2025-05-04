@@ -1,0 +1,17 @@
+.git
+.github
+.vscode
+.idea
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.dylib
+*.egg-info
+dist
+build
+venv
+*.log
+node_modules
+.aws-sam
