@@ -109,12 +109,9 @@ Or use PM2 for managed restarts.
 
 ---
 
-## 🧠 Future Improvements
+## 🧠 Future Improvements/TODO
 
-- [ ] Add Slack/email alerts on failure
-- [ ] Automatically evaluate model performance
-- [ ] Cache and reuse training artifacts
-- [ ] Add TensorBoard logs
+- [ ] Make service runs on Lambda schedule daily
 
 ---
 

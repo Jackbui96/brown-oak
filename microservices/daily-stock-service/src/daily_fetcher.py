@@ -12,7 +12,7 @@ from_date = yesterday.strftime('%Y-%m-%d')
 to_date = today.strftime('%Y-%m-%d')
 
 def fetch_polygon_daily(symbol):
-    print(f"Fetching {symbol} for {from_date}")
+    print(f"Fetching {symbol} for {to_date}")
     url = (
         f"https://api.polygon.io/v2/aggs/ticker/{symbol}/range/1/day/"
         f"{from_date}/{to_date}"

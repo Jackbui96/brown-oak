@@ -4,7 +4,7 @@ const getFrontendConfig = async (req, res) => {
     const project = req.params.project;
 
     try {
-        const fullConfig = await loadConfigFromSSM("moodie", ["keys/firebase"]);
+        const fullConfig = await loadConfigFromSSM(project, ["keys/firebase"]);
         const frontendConfig = {
             apiKey: fullConfig.FIREBASE_API,
             appId: fullConfig.FIREBASE_APP_ID,
