@@ -1,0 +1,15 @@
+type Movie {
+    id: ID!
+    title: String
+    overview: String
+    releaseDate: String
+    voteAverage: Float
+    voteCount: Int
+    popularity: Float
+    genreIds: [Int!]
+    posterPath: String
+}
+
+type Query {
+    randomMovies(limit: Int = 10): [Movie]
+}
