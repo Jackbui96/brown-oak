@@ -13,6 +13,7 @@ class CorsConfig {
             override fun addCorsMappings(registry: CorsRegistry) {
                 registry.addMapping("/**")
                     .allowedOrigins(
+                        "http://localhost:3000",               // local dev frontend (usually run port 3000)
                         "https://moodie.a-pani.com",
                         "https://api.a-pani.com",
                     )
