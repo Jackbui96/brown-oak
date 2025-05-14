@@ -1,6 +1,7 @@
 package com.apani.moodieapigateway.service
 
 import com.apani.moodieapigateway.model.db.Movie
+import com.apani.moodieapigateway.model.rest.MovieAutoComplete
 import com.apani.moodieapigateway.repo.MovieRepo
 import org.springframework.stereotype.Service
 
@@ -13,5 +14,14 @@ class MovieService(private val movieRepo: MovieRepo) {
         } catch (e: Exception) {
             emptyList()
         }
+    }
+
+    fun getAutoCompleteSuggestions(
+        query: String,
+        limit: Int
+    ): List<MovieAutoComplete> {
+        if (query.isBlank()) return emptyList()
+
+        return movieRepo.getAutoCompleteSuggestions(query, limit)
     }
 }
