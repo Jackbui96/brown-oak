@@ -33,5 +33,7 @@ def nlp_feature_extraction(df):
     system = MovieRecommendationModel(df, movie_features)
     system.get_movie_recommendations(1241982)
 
+    system.save_embeddings_to_h5()
+
 if __name__ == "__main__":
     setup_df()
